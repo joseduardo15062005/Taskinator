@@ -9,6 +9,12 @@ var createTaskHandler = function (event) {
     "select[name='task-type']"
   ).value;
 
+  // check if input values are empty strings
+  if (!taskNameInput || !taskTypeInput) {
+    alert("You need to fill out the task form!");
+    return false;
+  }
+
   var taskDataObj = {
     name: taskNameInput,
     type: taskTypeInput,
@@ -35,6 +41,7 @@ var createTaskEl = function (taskDataObj) {
 
   listItemEl.appendChild(taskInfoEl);
   taskToDoEl.appendChild(listItemEl);
+  formEl.reset();
 };
 
 formEl.addEventListener("submit", createTaskHandler);
